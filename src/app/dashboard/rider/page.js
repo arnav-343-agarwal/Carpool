@@ -13,7 +13,7 @@ export default function RiderDashboard() {
       .then((res) => res.json())
       .then((data) => {
         if (data.user) {
-          setUser(data.user); // Fix: Extract `user` from API response
+          setUser(data.user);
         } else {
           toast.error("Failed to load user details.");
         }
@@ -26,6 +26,31 @@ export default function RiderDashboard() {
       .then((data) => setRides(data))
       .catch(() => toast.error("Failed to load rides."));
   }, []);
+
+  const handleLeaveRide = async (rideId) => {
+    const confirmLeave = confirm("Are you sure you want to leave this ride?");
+    if (!confirmLeave) return;
+
+    try {
+      const res = await fetch("/api/rides/leave", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ rideId }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success("Successfully left the ride!");
+        setRides((prevRides) => prevRides.filter((ride) => ride._id !== rideId));
+      } else {
+        toast.error(data.error || "Failed to leave ride.");
+      }
+    } catch (error) {
+      toast.error("Something went wrong.");
+    }
+  };
 
   if (!user) return <p>Loading...</p>;
 
@@ -46,7 +71,14 @@ export default function RiderDashboard() {
             <div key={ride._id} className="border rounded-lg p-4 shadow-md bg-white">
               <h2 className="text-xl font-bold">{ride.pickupLocation} → {ride.dropLocation}</h2>
               <p className="text-gray-600">Departure: {new Date(ride.departureTime).toLocaleString()}</p>
-              <Button className="mt-3 w-full bg-red-600 text-white">Leave Ride</Button>
+              
+              {/* ✅ Leave Ride Button */}
+              <Button
+                onClick={() => handleLeaveRide(ride._id)}
+                className="mt-3 w-full bg-red-600 text-white hover:bg-red-500"
+              >
+                Leave Ride
+              </Button>
             </div>
           ))}
         </div>
