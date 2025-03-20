@@ -9,7 +9,7 @@ export default function AvailableRides() {
   const [dropLocation, setDropLocation] = useState("");
   const [sortOption, setSortOption] = useState("departure"); // Default sort
 
-  // ✅ Fetch rides from API
+  // Fetch rides from API
   const fetchRides = () => {
     let url = "/api/rides/available";
     if (pickupLocation || dropLocation) {
@@ -32,7 +32,7 @@ export default function AvailableRides() {
     fetchRides();
   }, []);
 
-  // ✅ Sorting Function
+  // Sorting Function
   const sortedRides = [...rides].sort((a, b) => {
     if (sortOption === "departure") {
       return new Date(a.departureTime) - new Date(b.departureTime);
@@ -47,7 +47,7 @@ export default function AvailableRides() {
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">Find a Ride 🚗</h1>
 
-      {/* ✅ Search Form */}
+      {/* Search Form */}
       <div className="mb-4 flex flex-wrap gap-4">
         <input
           type="text"
@@ -71,7 +71,7 @@ export default function AvailableRides() {
         </button>
       </div>
 
-      {/* ✅ Sorting Dropdown */}
+      {/* Sorting Dropdown */}
       <div className="mb-4 flex items-center gap-4">
         <label className="font-bold">Sort By:</label>
         <select
@@ -84,7 +84,7 @@ export default function AvailableRides() {
         </select>
       </div>
 
-      {/* ✅ Rides List */}
+      {/* Rides List */}
       {sortedRides.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedRides.map((ride) => (

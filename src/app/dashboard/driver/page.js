@@ -8,12 +8,12 @@ export default function DriverDashboard() {
   const [rides, setRides] = useState([]);
 
   useEffect(() => {
-    // Fetch user details correctly by extracting `user`
+    // Fetch user details
     fetch("/api/auth/me", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
         if (data.user) {
-          setUser(data.user); // ✅ Extract user from API response
+          setUser(data.user);
         } else {
           toast.error("Failed to load user details.");
         }
@@ -26,6 +26,32 @@ export default function DriverDashboard() {
       .then((data) => setRides(data))
       .catch(() => toast.error("Failed to load rides."));
   }, []);
+
+  // ✅ Function to delete a ride
+  const handleDeleteRide = async (rideId) => {
+    const confirmDelete = confirm("Are you sure you want to delete this ride?");
+    if (!confirmDelete) return;
+
+    try {
+      const res = await fetch("/api/rides/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ rideId }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success("Ride deleted successfully!");
+        setRides((prevRides) => prevRides.filter((ride) => ride._id !== rideId));
+      } else {
+        toast.error(data.error || "Failed to delete ride.");
+      }
+    } catch (error) {
+      toast.error("Something went wrong.");
+    }
+  };
 
   if (!user) return <p>Loading...</p>;
 
