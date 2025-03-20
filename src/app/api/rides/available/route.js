@@ -20,7 +20,7 @@ export async function GET(req) {
     // Fetch available rides
     const rides = await Ride.find(query).populate({
         path: "driver",
-        model: User, // ✅ Ensure model is referenced correctly
+        model: User, // Ensure model is referenced correctly
         select: "name email",
     });
 

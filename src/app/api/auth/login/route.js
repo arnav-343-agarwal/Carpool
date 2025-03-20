@@ -24,7 +24,7 @@ export async function POST(req) {
     response.cookies.set("token", token, { 
       httpOnly: true, 
       secure: process.env.NODE_ENV === "production", 
-      sameSite: "lax",  // Change from "strict" to "lax" for better cookie persistence
+      sameSite: "lax",  
       path: "/", 
     });
 

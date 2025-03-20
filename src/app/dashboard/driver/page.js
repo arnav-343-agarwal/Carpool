@@ -27,7 +27,7 @@ export default function DriverDashboard() {
       .catch(() => toast.error("Failed to load rides."));
   }, []);
 
-  // ✅ Function to delete a ride
+  // Function to delete a ride
   const handleDeleteRide = async (rideId) => {
     const confirmDelete = confirm("Are you sure you want to delete this ride?");
     if (!confirmDelete) return;

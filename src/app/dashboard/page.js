@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import User from "@/models/User";
 import { dbConnect } from "@/lib/dbConnect";
-import RedirectComponent from "@/components/RedirectComponent"; // Import Redirect Component
+import RedirectComponent from "@/components/RedirectComponent"; 
 
 export default async function Dashboard() {
   await dbConnect();
@@ -11,7 +11,7 @@ export default async function Dashboard() {
   const token = cookieStore.get("token")?.value;
 
   if (!token) {
-    console.log("🚨 No token found, redirecting to login...");
+    console.log("No token found, redirecting to login...");
     return <RedirectComponent to="/login" />;
   }
 
@@ -23,7 +23,7 @@ export default async function Dashboard() {
     console.log("User Data from DB:", user); // Debug user role
 
     if (!user) {
-      console.log("🚨 No user found, redirecting to login...");
+      console.log("No user found, redirecting to login...");
       return <RedirectComponent to="/login" />;
     }
 
@@ -32,7 +32,7 @@ export default async function Dashboard() {
 
     return <RedirectComponent to={redirectTo} />;
   } catch (error) {
-    console.error("🚨 JWT verification failed:", error);
+    console.error("JWT verification failed:", error);
     return <RedirectComponent to="/login" />;
   }
 }

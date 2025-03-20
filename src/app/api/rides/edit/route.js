@@ -25,7 +25,7 @@ export async function PUT(req) {
       return NextResponse.json({ error: "You can only edit your own rides" }, { status: 403 });
     }
 
-    // ✅ Update ride details
+    // Update ride details
     ride.pickupLocation = pickupLocation;
     ride.dropLocation = dropLocation;
     ride.dateTime = dateTime;

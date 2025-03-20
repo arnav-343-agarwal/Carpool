@@ -1,3 +1,5 @@
+// The aim for this file is to provide the list of some major cities to locate on map as we using simply leaflet package
+
 export const cityCoordinates = {
     "New Delhi": [28.6139, 77.2090],
     "Mumbai": [19.0760, 72.8777],
