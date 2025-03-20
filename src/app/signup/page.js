@@ -28,7 +28,7 @@ export default function SignupPage() {
 
       if (res.ok) {
         toast.success("Account created successfully!");
-        window.location.href = "/dashboard"; // ✅ Redirect after sign-up
+        window.location.href = "/dashboard"; // Redirect after sign-up
       } else {
         toast.error(data.error || "Failed to create account.");
       }

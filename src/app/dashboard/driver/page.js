@@ -8,7 +8,7 @@ export default function DriverDashboard() {
   const [rides, setRides] = useState([]);
 
   useEffect(() => {
-    // ✅ Fetch user details correctly by extracting `user`
+    // Fetch user details correctly by extracting `user`
     fetch("/api/auth/me", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
@@ -20,7 +20,7 @@ export default function DriverDashboard() {
       })
       .catch(() => toast.error("Failed to load user details."));
 
-    // ✅ Fetch created rides
+    // Fetch created rides
     fetch("/api/rides/my-created-rides", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => setRides(data))
@@ -31,7 +31,7 @@ export default function DriverDashboard() {
 
   return (
     <div className="container mx-auto p-6">
-      {/* ✅ User Details Section */}
+      {/* User Details Section */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-6">
         <h2 className="text-xl font-bold">Driver Information</h2>
         <p><strong>Name:</strong> {user.name || "N/A"}</p>
@@ -39,7 +39,7 @@ export default function DriverDashboard() {
         <p><strong>Role:</strong> Driver</p>
       </div>
 
-      {/* ✅ Create Ride Button */}
+      {/* Create Ride Button */}
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Your Created Rides 🚗</h1>
         <Link
@@ -50,7 +50,7 @@ export default function DriverDashboard() {
         </Link>
       </div>
 
-      {/* ✅ Ride List */}
+      {/* Ride List */}
       {rides.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rides.map((ride) => (

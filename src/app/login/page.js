@@ -26,7 +26,7 @@ export default function LoginPage() {
 
       if (res.ok) {
         toast.success("Login successful!");
-        window.dispatchEvent(new Event("authChange")); // ✅ Notify Navbar
+        window.dispatchEvent(new Event("authChange")); // Notify Navbar
         router.push("/dashboard");
       } else {
         toast.error(data.error || "Invalid credentials.");

@@ -8,19 +8,19 @@ export default function RiderDashboard() {
   const [rides, setRides] = useState([]);
 
   useEffect(() => {
-    // ✅ Fetch user details
+    // Fetch user details
     fetch("/api/auth/me", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {
         if (data.user) {
-          setUser(data.user); // ✅ Fix: Extract `user` from API response
+          setUser(data.user); // Fix: Extract `user` from API response
         } else {
           toast.error("Failed to load user details.");
         }
       })
       .catch(() => toast.error("Failed to load user details."));
 
-    // ✅ Fetch joined rides
+    // Fetch joined rides
     fetch("/api/rides/my-rides", { credentials: "include" })
       .then((res) => res.json())
       .then((data) => setRides(data))
@@ -31,7 +31,7 @@ export default function RiderDashboard() {
 
   return (
     <div className="container mx-auto p-6">
-      {/* ✅ Rider Info Section */}
+      {/* Rider Info Section */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-6">
         <h2 className="text-xl font-bold">Your Information</h2>
         <p><strong>Name:</strong> {user.name || "N/A"}</p>

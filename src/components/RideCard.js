@@ -1,7 +1,7 @@
 "use client"; 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation"; // ✅ For redirecting to login
+import { useRouter } from "next/navigation"; // For redirecting to login
 import toast from "react-hot-toast";
 
 const RideCard = ({ ride }) => {
@@ -21,7 +21,7 @@ const RideCard = ({ ride }) => {
       const res = await fetch(`/api/rides/join`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // ✅ Sends authentication token via cookies
+        credentials: "include", //  Sends authentication token via cookies
         body: JSON.stringify({ rideId: ride._id }),
       });
 
@@ -32,7 +32,7 @@ const RideCard = ({ ride }) => {
         toast.success("You have successfully joined the ride!");
       } else if (res.status === 401) {
         toast.error("You need to log in first!");
-        router.push("/login"); // ✅ Redirect to login page
+        router.push("/login"); //  Redirect to login page
       } else {
         toast.error(data.error || "Failed to join ride.");
       }
