@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **Carpool 🚗 – Smarter, Greener, and Affordable Rides**  
 
-## Getting Started
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-%F0%9F%9A%80-blue?style=for-the-badge)](https://carpool-theta.vercel.app/)  
+A **next-gen carpooling platform** built with **Next.js (App Router)** to help riders **find rides** and drivers **offer rides**—making travel **more efficient, economical, and eco-friendly!** 🌍  
 
-First, run the development server:
+---
 
-```bash
+## **🚀 Features**  
+### **For Riders** 🏎️  
+✔️ Browse & search available rides  
+✔️ View ride details with driver information  
+✔️ Join rides with **one-click booking**  
+✔️ View all joined rides in the **Rider Dashboard**  
+✔️ Leave a ride if plans change  
+
+### **For Drivers** 🚖  
+✔️ Create & manage rides with **real-time availability**  
+✔️ Edit ride details & remove riders if needed  
+✔️ Delete rides when no longer available  
+✔️ View all created rides in the **Driver Dashboard**  
+
+### **General Features** ✨  
+✔️ **JWT Authentication** for secure access  
+✔️ **Dynamic dashboards** for riders & drivers  
+✔️ **Interactive Map (Leaflet.js)** for approximate locations  
+✔️ **Sorting & Searching** for better ride discovery  
+✔️ **Fully Responsive UI** with **ShadCN UI & Tailwind CSS**  
+
+---
+
+## **🎯 Tech Stack**  
+🔹 **Frontend:** Next.js (App Router), React, Tailwind CSS, ShadCN UI  
+🔹 **Backend:** Node.js, Express.js, MongoDB (Mongoose)  
+🔹 **Authentication:** Passport.js, JWT (JSON Web Token)  
+🔹 **Database:** MongoDB Atlas  
+🔹 **Deployment:** Vercel  
+
+---
+
+
+## **⚙️ Installation & Setup**  
+```sh
+# Clone the repository
+git clone https://github.com/your-username/Carpool.git
+
+# Navigate to the project directory
+cd Carpool
+
+# Install dependencies
+npm install
+
+# Create a .env file and add the following
+MONGODB_URI=your-mongodb-connection-string
+JWT_SECRET=your-secret-key
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## **💡 Contributing**  
+Want to improve **Carpool**? Follow these steps:  
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```sh
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1️⃣ Fork the repo
 
-## Learn More
+2️⃣ Create a new branch
+git checkout -b feature-new  # For new features
+OR
+git checkout -b fix-bug      # For bug fixes
 
-To learn more about Next.js, take a look at the following resources:
+3️⃣ Commit your changes
+git commit -m "Add new feature"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4️⃣ Push to your branch
+git push origin feature-new
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open a Pull Request 
+```
+📞 Contact
+For questions or suggestions, reach out:
 
-## Deploy on Vercel
+📧 Email: agarwalarnav2003@gmail.com 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📌 GitHub: https://github.com/arnav-343-agarwal/Carpool.git  
