@@ -8,25 +8,30 @@ import { cn } from "@/lib/utils";
 const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
 
-  // ✅ Function to check if user is logged in
-  const checkAuth = async () => {
+  // ✅ Function to fetch user details correctly
+  const fetchUser = async () => {
     try {
       const res = await fetch("/api/auth/me", { credentials: "include" });
       const data = await res.json();
-      setIsLoggedIn(!!data.user);
+
+      if (data.user) {
+        setUser(data.user); // ✅ Fix: Extract `user` from API response
+      } else {
+        setUser(null);
+      }
     } catch {
-      setIsLoggedIn(false);
+      setUser(null);
     }
   };
 
-  // ✅ Fetch auth status when Navbar mounts
+  // ✅ Fetch user data when Navbar mounts
   useEffect(() => {
-    checkAuth();
-    
+    fetchUser();
+
     // ✅ Listen for login/logout events
-    const handleAuthChange = () => checkAuth();
+    const handleAuthChange = () => fetchUser();
     window.addEventListener("authChange", handleAuthChange);
 
     return () => window.removeEventListener("authChange", handleAuthChange);
@@ -34,7 +39,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
-    setIsLoggedIn(false);
+    setUser(null);
     window.dispatchEvent(new Event("authChange")); // ✅ Notify all components
     router.push("/login");
   };
@@ -44,15 +49,27 @@ const Navbar = () => {
       <Link href="/" className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
         🚗 Carpooling
       </Link>
-      <div className="space-x-4">
+
+      <div className="flex items-center gap-4">
         <Link href="/rides" className={cn("text-gray-700 dark:text-gray-300", pathname === "/rides" && "font-bold text-indigo-600")}>
           Available Rides
         </Link>
         <Link href="/dashboard" className={cn("text-gray-700 dark:text-gray-300", pathname === "/dashboard" && "font-bold text-indigo-600")}>
           Dashboard
         </Link>
-        {isLoggedIn ? (
-          <button onClick={handleLogout} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-500">
+
+        {/* ✅ Show Correct Role in Navbar */}
+        {user && (
+          <span className="text-gray-600 dark:text-gray-300 italic">
+            You are a {user.role === "driver" ? "Driver" : "Rider"}
+          </span>
+        )}
+
+        {user ? (
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-500"
+          >
             Logout
           </button>
         ) : (
